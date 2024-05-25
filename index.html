@@ -19,6 +19,8 @@
         <div id="engracada_romantica">
             <button type="button" onclick="randomCantadaEngracada()" class="btn btn-primary">Engraçada</button>
             <button type="button" onclick="randomCantadasRomanticas()" class="btn btn-danger">Romantica</button>
+            <button type="button" onclick="randomCantadasAudio()" class="btn btn-success">Audio</button>
+
         </div>
         <div id='div_cantada' class="alert alert-danger" role="alert">
             <a id="cantanda">This is a primary alert—check it out!</a>
@@ -29,11 +31,22 @@
 </html>
 
 <script>
+
+    function randomCantadasAudio() {
+        indexCantada = Math.floor(Math.random() * cantadasComAudio.length);
+        var cantada = cantadasComAudio[indexCantada];
+        document.getElementById('div_cantada').innerHTML = cantada;
+        document.getElementById('div_cantada').style.display = 'flex';
+        var meuAudio = new Audio(indexCantada + '.mp3');
+        console.log(meuAudio)
+        meuAudio.play();
+        atualizaCard(cantadasComAudio)
+    }
     function randomCantada() {  
         var cantada = outrasCantadas[Math.floor(Math.random() * outrasCantadas.length)];
         document.getElementById('div_cantada').innerHTML = cantada;
         document.getElementById('div_cantada').style.display = 'flex';
-        atualizaCard(todasCantadas)
+        atualizaCard(outrasCantadas)
     }
     function randomCantadaEngracada() {   
         var cantada = cantadasEngracadas[Math.floor(Math.random() * cantadasEngracadas.length)];
@@ -53,15 +66,17 @@
         var elemento = document.getElementById("div_cantada");
         elemento.classList. remove('alert-danger')
         elemento.classList. remove('alert-primary')
-        elemento.classList. remove('alert-light') 
+        elemento.classList. remove('alert-light')
+        elemento.classList. add('alert-success') 
+
+ 
         if (cantada == cantadasEngracadas) {
-            var elemento = document.getElementById("div_cantada");
             elemento.classList. add('alert-primary') 
         }else if (cantada == cantadasRomanticas) {
-            var elemento = document.getElementById("div_cantada");
             elemento.classList. add('alert-danger') 
-        }else{
-            var elemento = document.getElementById("div_cantada");
+        }else if (cantada == cantadasComAudio) {
+            elemento.classList. add('alert-success') 
+        }else if (cantada == outrasCantadas) {
             elemento.classList. add('alert-light') 
         }
 
@@ -145,6 +160,23 @@
         "Não existe amor à primeira vista. O que existe é a pessoa certa, no momento certo. Você por acaso estava lá!",
         "Eu não sou plano de saúde, mas, se você quiser, eu acabo com a sua carência, sua linda.",
         "Se você está aqui, quem está gerenciando o céu?"
+    ];
+
+    const cantadasComAudio = [
+        "Perdi meu número de telefone, me empresta o seu?",
+        "Você é poesia personificada.",
+        "Faça uma pose de príncipe declamando um poema e diga: 'Pulei na água até o umbigo, então, quer ficar comigo?'",
+        "Gata, me pega no colo? É que minha mãe tá vindo e eu queria contar que andei de avião.",
+        "Será que desligaram o wi-fi da horta? Meu chuchuzinho não está online.",
+        "Não sou traficante, mas quero a sua boca.",
+        "Você acredita em amor à primeira vista ou devo passar por aqui mais uma vez?",
+        "Meu nome é Arnaldo, mas pode me chamar de Naldo, pois quando eu te vi perdi o ar.",
+        "Seu pai é mecânico? Porque você é uma graxinha!",
+        "Você não usa calcinha, você usa um porta-joias.",
+        "Se você está aqui, quem está gerenciando o céu?",
+        "Você não é colesterol, mas afetou meu coração.",
+        "Você é tão desejada quanto uma sexta-feira!",
+        "Me passa o seu Twitter? O meu pai disse que eu devo seguir o meu sonho.",
     ];
         
 </script>
