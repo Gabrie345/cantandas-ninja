@@ -22,7 +22,10 @@
         </div>
         <div id="engracada_romantica">
             <button type="button" onclick="randomCantadasAudio('faustao')" class="btn btn-success">Faustão</button>
-            <button type="button" onclick="randomCantadasAudio('chaves')" class="btn btn-warning">Chaves</button>
+            <button type="button" onclick="randomCantadasAudio('chaves')" class="btn btn-dark">Chaves</button>
+            <button type="button" onclick="randomCantadasAudio('bolsonaro')" class="btn btn-warning">Bolsonaro</button>
+            <button type="button" onclick="randomCantadasAudio('lula')" class="btn btn-danger">Lula</button>
+
         </div>
         <div id='div_cantada' class="alert alert-danger" role="alert">
             <a id="cantanda">This is a primary alert—check it out!</a>
@@ -45,17 +48,63 @@
                 indexCantada = Math.floor(Math.random() * cantadasDoChaves.length);
                 var cantada = cantadasDoChaves[indexCantada];
                 break;
+            case 'bolsonaro':
+                indexCantada = Math.floor(Math.random() * cantadasDoBolsonaro.length);
+                var cantada = cantadasDoBolsonaro[indexCantada];
+                break;
+            case 'lula':
+                indexCantada = Math.floor(Math.random() * cantadasDoLula.length);
+                var cantada = cantadasDoLula[indexCantada];
+                break;
             default:
                 break;
         }
-
         document.getElementById('div_cantada').innerHTML = cantada;
         document.getElementById('div_cantada').style.display = 'flex';
         var meuAudio = new Audio(autor +'/'+indexCantada + '.mp3');
         meuAudio.play();
         atualizaCard('cantadas'+autor)
     }
+    function atualizaCard(cantada) {
+        var elemento = document.getElementById("div_cantada");
+        limparCantada()
+        switch (cantada) {
+            case 'cantadasEngracadas':
+                elemento.classList.add('alert-primary');
+                break;
+            case 'cantadaslula': 
+                elemento.classList.add('alert-danger');
+                break;
+            case 'cantadasRomanticas':
+                elemento.classList.add('alert-danger');
+                break;
+            case 'cantadasfaustao':
+                elemento.classList.add('alert-success');
+                break;
+            case 'cantadaschaves':
+                elemento.classList.add('alert-dark');
+                break;
+            case 'outrasCantadas':
+                elemento.classList.add('alert-light');
+                break;
+            case 'cantadasbolsonaro':
+                elemento.classList.add('alert-warning');
+                break;
+            default:
+                break;
+        }
+    }
+    function limparCantada() {
+        var elemento = document.getElementById("div_cantada");
+        elemento.classList.remove('alert-danger')
+        elemento.classList.remove('alert-primary')
+        elemento.classList.remove('alert-light')
+        elemento.classList.remove('alert-success') 
+        elemento.classList.remove('alert-dark')
+        elemento.classList.remove('alert-warning')
+    }
 
+    
     function randomCantada() {  
         var cantada = outrasCantadas[Math.floor(Math.random() * outrasCantadas.length)];
         document.getElementById('div_cantada').innerHTML = cantada;
@@ -76,34 +125,8 @@
         atualizaCard('cantadasRomanticas')
         
     }
-    function atualizaCard(cantada) {
-        var elemento = document.getElementById("div_cantada");
-        elemento.classList.remove('alert-danger')
-        elemento.classList.remove('alert-primary')
-        elemento.classList.remove('alert-light')
-        elemento.classList.remove('alert-success') 
-        elemento.classList.remove('alert-warning')
-        switch (cantada) {
-            case 'cantadasEngracadas':
-                elemento.classList.add('alert-primary');
-                break;
-            case 'cantadasRomanticas':
-                elemento.classList.add('alert-danger');
-                break;
-            case 'cantadasfaustao':
-                elemento.classList.add('alert-success');
-                break;
-            case 'cantadaschaves':
-                elemento.classList.add('alert-warning');
-                break;
-            case 'outrasCantadas':
-                elemento.classList.add('alert-light');
-                break;
-            default:
-                break;
-        }
-    }
-        const cantadasEngracadas = [
+
+    const cantadasEngracadas = [
         "Perdi meu número de telefone, me empresta o seu?",
         "Você não usa calcinha, você usa um porta-joias.",
         "Havia dois ursos, o Beijaeu e o Mebeija, então, o Beijaeu morreu. Quem sobrou?",
@@ -211,5 +234,20 @@
         "Sabe o que o Professor Girafales diria se visse você? Ele diria que a aula acabou, porque eu só consigo prestar atenção em você!",
         "Você é a Chiquinha? Porque só de ver você, eu já fico todo bobo!",
         "Meu coração é igual ao meu barril... Pode parecer simples, mas tem um montão de amor guardado só para você!"
+    ];
+    const cantadasDoBolsonaro = [
+        "você é muito linda ta okay ?",
+        "Por você eu me juntaria ao lula, ta okey.",
+        "Gata você não é cloroquina mas é a cura do meu coração, ta okey.",
+
+    ];
+    const cantadasDoLula = [
+        "companheira, eu não sou o bolsonaro, mas eu tomaria uma facada por você",
+        "companheira, Por você eu me juntaria ao bolsonaro, ta okey.",
+    ];
+    const cantadasDoBobEsponja = [
+        "Se eu fosse uma água-viva, gostaria de ser capturado por você todos os dias!",
+        "Se beleza fosse um ingrediente secreto, você seria o hambúrguer de siri perfeito!",
+        "Você é o Siri Cascudo? Porque você é o lugar mais especial para mim!"
     ];
 </script>
