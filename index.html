@@ -19,7 +19,7 @@
         <div id="engracada_romantica">
             <button type="button" onclick="randomCantadaEngracada()" class="btn btn-primary">Engraçada</button>
             <button type="button" onclick="randomCantadasRomanticas()" class="btn btn-danger">Romantica</button>
-            <button type="button" onclick="randomCantadasAudio()" class="btn btn-success">Audio</button>
+            <button type="button" onclick="randomCantadasAudio()" class="btn btn-success">Faustão</button>
 
         </div>
         <div id='div_cantada' class="alert alert-danger" role="alert">
@@ -64,22 +64,26 @@
     }
     function atualizaCard(cantada) {
         var elemento = document.getElementById("div_cantada");
-        elemento.classList. remove('alert-danger')
-        elemento.classList. remove('alert-primary')
-        elemento.classList. remove('alert-light')
-        elemento.classList. add('alert-success') 
-
- 
-        if (cantada == cantadasEngracadas) {
-            elemento.classList. add('alert-primary') 
-        }else if (cantada == cantadasRomanticas) {
-            elemento.classList. add('alert-danger') 
-        }else if (cantada == cantadasComAudio) {
-            elemento.classList. add('alert-success') 
-        }else if (cantada == outrasCantadas) {
-            elemento.classList. add('alert-light') 
+        elemento.classList.remove('alert-danger')
+        elemento.classList.remove('alert-primary')
+        elemento.classList.remove('alert-light')
+        elemento.classList.add('alert-success') 
+        switch (cantada) {
+            case cantadasEngracadas:
+                elemento.classList.add('alert-primary');
+                break;
+            case cantadasRomanticas:
+                elemento.classList.add('alert-danger');
+                break;
+            case cantadasComAudio:
+                elemento.classList.add('alert-success');
+                break;
+            case outrasCantadas:
+                elemento.classList.add('alert-light');
+                break;
+            default:
+                break;
         }
-
     }
         const cantadasEngracadas = [
         "Perdi meu número de telefone, me empresta o seu?",
