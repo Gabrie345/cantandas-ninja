@@ -19,8 +19,10 @@
         <div id="engracada_romantica">
             <button type="button" onclick="randomCantadaEngracada()" class="btn btn-primary">Engraçada</button>
             <button type="button" onclick="randomCantadasRomanticas()" class="btn btn-danger">Romantica</button>
-            <button type="button" onclick="randomCantadasAudio()" class="btn btn-success">Faustão</button>
-
+        </div>
+        <div id="engracada_romantica">
+            <button type="button" onclick="randomCantadasAudio('faustao')" class="btn btn-success">Faustão</button>
+            <button type="button" onclick="randomCantadasAudio('chaves')" class="btn btn-warning">Chaves</button>
         </div>
         <div id='div_cantada' class="alert alert-danger" role="alert">
             <a id="cantanda">This is a primary alert—check it out!</a>
@@ -32,34 +34,46 @@
 
 <script>
 
-    function randomCantadasAudio() {
-        indexCantada = Math.floor(Math.random() * cantadasComAudio.length);
-        var cantada = cantadasComAudio[indexCantada];
+    function randomCantadasAudio(autor) {
+        console.log(autor)
+        switch (autor) {
+            case 'faustao':
+                indexCantada = Math.floor(Math.random() * cantadasComFaustao.length);
+                var cantada = cantadasComFaustao[indexCantada];
+                break;
+            case 'chaves':
+                indexCantada = Math.floor(Math.random() * cantadasDoChaves.length);
+                var cantada = cantadasDoChaves[indexCantada];
+                break;
+            default:
+                break;
+        }
+
         document.getElementById('div_cantada').innerHTML = cantada;
         document.getElementById('div_cantada').style.display = 'flex';
-        var meuAudio = new Audio(indexCantada + '.mp3');
-        console.log(meuAudio)
+        var meuAudio = new Audio(autor +'/'+indexCantada + '.mp3');
         meuAudio.play();
-        atualizaCard(cantadasComAudio)
+        atualizaCard('cantadas'+autor)
     }
+
     function randomCantada() {  
         var cantada = outrasCantadas[Math.floor(Math.random() * outrasCantadas.length)];
         document.getElementById('div_cantada').innerHTML = cantada;
         document.getElementById('div_cantada').style.display = 'flex';
-        atualizaCard(outrasCantadas)
+        atualizaCard('outrasCantadas')
     }
     function randomCantadaEngracada() {   
         var cantada = cantadasEngracadas[Math.floor(Math.random() * cantadasEngracadas.length)];
         document.getElementById('div_cantada').innerHTML = cantada;
         document.getElementById('div_cantada').style.display = 'flex';
-        atualizaCard(cantadasEngracadas)
+        atualizaCard('cantadasEngracadas')
     }
 
     function randomCantadasRomanticas() {   
         var cantada = cantadasRomanticas[Math.floor(Math.random() * cantadasRomanticas.length)];
         document.getElementById('div_cantada').innerHTML = cantada;
         document.getElementById('div_cantada').style.display = 'flex';
-        atualizaCard(cantadasRomanticas)
+        atualizaCard('cantadasRomanticas')
         
     }
     function atualizaCard(cantada) {
@@ -67,18 +81,22 @@
         elemento.classList.remove('alert-danger')
         elemento.classList.remove('alert-primary')
         elemento.classList.remove('alert-light')
-        elemento.classList.add('alert-success') 
+        elemento.classList.remove('alert-success') 
+        elemento.classList.remove('alert-warning')
         switch (cantada) {
-            case cantadasEngracadas:
+            case 'cantadasEngracadas':
                 elemento.classList.add('alert-primary');
                 break;
-            case cantadasRomanticas:
+            case 'cantadasRomanticas':
                 elemento.classList.add('alert-danger');
                 break;
-            case cantadasComAudio:
+            case 'cantadasfaustao':
                 elemento.classList.add('alert-success');
                 break;
-            case outrasCantadas:
+            case 'cantadaschaves':
+                elemento.classList.add('alert-warning');
+                break;
+            case 'outrasCantadas':
                 elemento.classList.add('alert-light');
                 break;
             default:
@@ -166,7 +184,7 @@
         "Se você está aqui, quem está gerenciando o céu?"
     ];
 
-    const cantadasComAudio = [
+    const cantadasComFaustao = [
         "Perdi meu número de telefone, me empresta o seu?",
         "Você é poesia personificada.",
         "Faça uma pose de príncipe declamando um poema e diga: 'Pulei na água até o umbigo, então, quer ficar comigo?'",
@@ -182,5 +200,16 @@
         "Você é tão desejada quanto uma sexta-feira!",
         "Me passa o seu Twitter? O meu pai disse que eu devo seguir o meu sonho.",
     ];
-        
+    
+    const cantadasDoChaves = [
+        "Sabe por que meu coração bate mais forte quando te vejo? Porque é como se tivesse um montão de churros só para mim!",
+        "Você acredita em amor à primeira vista? Ou eu preciso passar pela sua casa com o meu triciclo mais uma vez?",
+        "Você é a Dona Florinda? Porque eu fico todo atrapalhado só de olhar para você!",
+        "Se beleza fosse dinheiro, você seria dona do barril mais rico da vila!",
+        "Você é um churro? Porque você é doce e eu não consigo resistir!",
+        "Sabia que o Kiko tá me devendo uma coisa? Ele me deve uma desculpa por não ter me apresentado para você antes!",
+        "Sabe o que o Professor Girafales diria se visse você? Ele diria que a aula acabou, porque eu só consigo prestar atenção em você!",
+        "Você é a Chiquinha? Porque só de ver você, eu já fico todo bobo!",
+        "Meu coração é igual ao meu barril... Pode parecer simples, mas tem um montão de amor guardado só para você!"
+    ];
 </script>
